@@ -1,7 +1,7 @@
 
-let y = "";
-let x = "";
-let z = "";
+let y;
+let x;
+let z;
 
 x = Number(x);
 y = String(y);
