@@ -1,3 +1,7 @@
-let result = 1 + 2 * 3 + 4 ** 2;
 
-console.log(result);
+let username;
+document.getElementById("mySubmit").onclick = function(){
+    username = document.getElementById("myText").value;
+    console.log(username);
+    document.getElementById("myH1").textContent = `Hello ${username}`;
+}
