@@ -2,7 +2,7 @@
     display: block;
     text-align: center;
     font-size: 10em;
-    font: Arial;
+    font-family: Helvetica;
 }
 #btnContainer{
     text-align: center;
