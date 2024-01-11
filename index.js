@@ -18,11 +18,18 @@ let userName = "BachDam ";
 
 //let result = userName.startsWith(" "); //endsWith
 
-let result = userName.includes(" ");
+// let result = userName.includes(" ");
 
-if(result){
-    console.log("Your user name can not include ' ' " );
-}
-else{
-    console.log(userName);
-}
+// if(result){
+//     console.log("Your user name can not include ' ' " );
+// }
+// else{
+//     console.log(userName);
+// }
+
+let phoneNumber = "123-564-8970";
+
+//phoneNumber = phoneNumber.replaceAll("-","-");
+phoneNumber = phoneNumber.padStart(15, "0"); //fills string with "0" until 
+                                             //string's length is 15
+console.log(phoneNumber);
