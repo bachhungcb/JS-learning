@@ -1,7 +1,7 @@
 //Method Chaining = Calling one methodafter another in
 //                  one continous line of code
 
-//let username = window.prompt("Enter your username: ");
+let username = window.prompt("Enter your username: ");
 
 //--NO METHOD CHAINING--
 
