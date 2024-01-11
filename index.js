@@ -1,23 +1,28 @@
-//SWITCH statement
+//string methods = allow you to manipulate and work with test (strings)
 
-let testScore = 76;
-let letterGrade;
+let userName = "BachDam ";
+// userName = userName.trim();
+// console.log(userName);
+// userName = userName.toUpperCase();
+// console.log(userName);
+// userName = userName.toLowerCase();
+// console.log(userName);
+// userName = userName.repeat(4);
+// console.log(userName);
+// let result = userName.startsWith(" ");
+// console.log(result);
+// console.log(userName.charAt(0));
+// console.log(userName.indexOf("a"));
+// console.log(userName.lastIndexOf("a"));
+// console.log(userName.length);
 
-switch(true){
-    case testScore >= 90:
-        letterGrade = "A";
-        break;
-    case testScore >= 80:
-        letterGrade = "B";
-        break;
-    case testScore >= 70:
-        letterGrade = "C";
-        break;
-    case testScore >= 60:
-        letterGrade = "D";
-        break;
-    default:
-        letterGrade = "F"
-    }
+//let result = userName.startsWith(" "); //endsWith
 
-console.log(letterGrade);
+let result = userName.includes(" ");
+
+if(result){
+    console.log("Your user name can not include ' ' " );
+}
+else{
+    console.log(userName);
+}
