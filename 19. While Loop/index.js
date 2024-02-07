@@ -3,7 +3,7 @@
 let username = "";
 
 while(username === "" || username === null){
-    
+    username = window.prompt();
 }
 
 console.log(`Hello ${username}`);
