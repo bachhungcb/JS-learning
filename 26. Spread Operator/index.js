@@ -6,6 +6,6 @@
 let fruits = ["Apple", "Orange","Banana"];
 let vegetable = ["Carrot", "celery", "Potato"];
 let newfruits = [...fruits];
-let foods = [...fruits, ... vegetable, "Egg", "Milk"];
+let foods = [...fruits, ...vegetable, "Egg", "Milk"];
 
 console.log(foods);
