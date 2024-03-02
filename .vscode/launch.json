@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/JS learning",
-      "program": "d:/JS learning/build/Debug/outDebug",
+      "cwd": "d:/JS learning/React/my-react-app",
+      "program": "d:/JS learning/React/my-react-app/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
