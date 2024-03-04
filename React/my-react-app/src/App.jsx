@@ -1,9 +1,8 @@
+import MyComponent from "./Component"
 
-import ProfilePicture from "./ProfilePicture";
 function App(){
-    return(<>
-            <ProfilePicture/>
-        </>);
+    return(<MyComponent/>);
+
 }
 
 export default App
