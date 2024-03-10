@@ -1,39 +1,27 @@
-// update function = A function passsed as an argument to setState() usually
-//                  ex. setYear(y => y + 1)
-//                  Allow for safe updates based on the previous state
-//                  Used with multiple state updates an asynchronous functions
-//                  Good practice to use updater functions
 
 import React, {useState} from 'react';
-
 function MyComponent(){
-    const [count, setCount] = useState(0);
+    const [car, setCar] = useState({year: 2024, 
+                                    make: "Ford", 
+                                    model: "Mustang"});
 
-    function increment(){
-        setCount(prevCount => prevCount + 1);
-        setCount(prevCount => prevCount + 1);
-        setCount(prevCount => prevCount + 1);
+    function handleYearChange(event){
+        setCar(c => ({...c, year: event.target.value}));
+    }
+    function handleMakeChange(event){
+        setCar(c => ({...c, make: event.target.value}));
+    }
+    function handleModelChange(event){
+        setCar(c => ({...c, model: event.target.value}));
     }
 
-    function decrement(){
-        setCount(c => c - 1);
-        setCount(c => c - 1);
-        setCount(c => c - 1);
+    return( <div>
+            <p>Your favorite car is: {car.year} {car.make} {car.model}</p>
+            <input type="number" value={car.year} onChange={handleYearChange}/><br/>
+            <input type="text" value={car.make} onChange={handleMakeChange}/><br/>
+            <input type="text" value={car.model} onChange={handleModelChange}/><br/>
 
-    }
-
-    function reset(){
-        setCount(0);
-    }
-
-    return(
-        <div>
-                <p>Count: {count}</p>
-                <button onClick={decrement}>Decrement</button>
-                <button onClick={reset}>Reset</button>
-                <button onClick={increment}>Increment</button>
-        </div>
-    )
+            </div>);
 }   
 
 export default MyComponent
