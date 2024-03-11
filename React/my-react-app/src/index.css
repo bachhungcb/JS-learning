@@ -1,5 +1,5 @@
 body{
-    background-color: hsl(0, 0%, 10%);
+    background-color: #5356FF;
 }
 
 .to-do-list{
@@ -10,14 +10,14 @@ body{
 
 h1{
     font-size: 4rem;
-    color: white;
+    color: #DFF5FF;
 }
 
 button{
     font-size: 2rem;
     font-weight: bold;
     padding: 10px 20px;
-    color: white;
+    color: #DFF5FF;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -42,11 +42,11 @@ button{
 }
 
 .move-button{
-    background-color: hsl(240, 100%, 50%);
+    background-color: #378CE7;
 }
 
 .move-button:hover{
-    background-color: hsl(240, 100%, 70%);
+    background-color: #67C6E3;
 }
 
 input[type="text"]{
