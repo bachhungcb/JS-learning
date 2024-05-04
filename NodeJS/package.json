@@ -11,5 +11,8 @@
     "nodejs_react"
   ],
   "author": "BachDam",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.18.2"
+  }
 }
