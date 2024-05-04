@@ -2,8 +2,6 @@ const express = require("express"); //commonjs
 const path = require("path");
 require("dotenv").config();
 
-console.log(">>> check env: ", process.env);
-
 const app = express(); // app express
 const port = process.env.PORT || 8083; //port => hardcode
 const hostname = process.env.HOST_NAME || "localhost";
@@ -14,7 +12,7 @@ app.set("view engine", "ejs");
 
 //khai bao route
 app.get("/", (req, res) => {
-  res.send("Hello World! \n hehehehe");
+  res.send("Hello World! \n huhu");
 });
 
 app.get("/abc", (req, res) => {
