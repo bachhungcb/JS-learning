@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //khai bao route
 app.get('/', (req, res) => {
-  res.send('Hello World! \n huhu');
+  res.send('Hello World! \n huhue');
 });
 
 app.get('/abc', (req, res) => {
