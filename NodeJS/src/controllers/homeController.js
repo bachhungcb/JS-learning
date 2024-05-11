@@ -1,3 +1,5 @@
+const connection = require('../config/database');
+
 
 const getHomepage = (req, res) =>{
     //process data, goi den model
