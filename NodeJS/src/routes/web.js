@@ -7,7 +7,7 @@ const router = express.Router()
 router.get('/', getHomepage);
 router.get('/abc', getABC);
 router.get('/bcd', getBCD);
-router.get('/old', getOld);
-router.get('/new', getNew);
+// router.get('/old', getOld);
+// router.get('/new', getNew);
 
 module.exports = router;
