@@ -1,6 +1,6 @@
 require("dotenv").config();
 const sql = require('mssql')
-const { request } = require("express");
+
 
 const dbConfig = {
   user: process.env.DB_USER,
@@ -18,20 +18,20 @@ const dbConfig = {
   }
 }
 
-// async function createPool() {
-//   try {
-//     const pool = await sql.connect(dbConfig);
-//     console.log("Connected to database");
-//     return pool;
-//   } catch (error) {
-//     console.error("Failed to connect:", error);
-//     throw error; // Ném lỗi để báo lỗi cho phần gọi
-//   }
-// }
+async function createPool() {
+  try {
+    const pool = await sql.connect(dbConfig);
+    console.log("Connected to database");
+    return pool;
+  } catch (error) {
+    console.error("Failed to connect:", error);
+    throw error; // Ném lỗi để báo lỗi cho phần gọi
+  }
+}
 
 //export config to use in other files
 
-module.exports = dbConfig;
+module.exports = createPool();
 
 
   

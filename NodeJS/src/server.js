@@ -16,18 +16,6 @@ configViewEngine(app);
 //khai bao route
 app.use('/',webRoutes);
 
-async function connectToDatabase() {
-  try {
-    // make sure that any items are correctly URL encoded in the connection string
-    await sql.connect(sqlConfig);
-    const result = await sql.query(`SELECT * FROM Users;`);
-    console.log(result);
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-connectToDatabase();
 
  app.listen(process.env.PORT, hostname, () => {
   console.log(`Server is running on http://${hostname}:${port}`);
