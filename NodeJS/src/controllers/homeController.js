@@ -74,10 +74,16 @@ const getBCD = (req, res) =>{
 //     }
 // }
 
+const postCreateUser = (req, res) => {
+    console.log('>>> req.body', req.body);
+    res.send('create a new user');
+}
+
 module.exports = {
     getHomepage,
     getABC,
-    getBCD
+    getBCD,
+    postCreateUser
     //getOld,
     //getNew
 }

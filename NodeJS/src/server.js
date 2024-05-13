@@ -7,6 +7,11 @@ const port = process.env.PORT || 8083; //port => hardcode
 const hostname = process.env.HOST_NAME || 'localhost';
 const webRoutes = require('./routes/web');
 
+//config req.body
+app.use(express.json()); // Used to parse JSON bodies
+app.use(express.urlencoded({ extended: true })) //Parse URL-encoded bodies
+
+
 //configure template engine
 configViewEngine(app);
 
