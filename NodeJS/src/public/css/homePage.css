@@ -29,4 +29,20 @@
  * {
     margin: 0;
     padding: 0;
-}
+  }
+
+  .form-add-new{
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 100px;
+  }
+
+  .input-group{
+    padding: 10px;
+  }
+
+  button{
+    margin: 10px;
+    cursor: pointer;
+    padding: 5px;
+  }
