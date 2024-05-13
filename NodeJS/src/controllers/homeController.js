@@ -1,5 +1,6 @@
 const sql = require('mssql');
 const sqlConfig  = require('../config/database');
+//const request = new sql.Request()
 
 
 const getHomepage = async (req, res) =>{
@@ -74,10 +75,34 @@ const getBCD = (req, res) =>{
 //     }
 // }
 
-const postCreateUser = (req, res) => {
+const postCreateUser = async (req, res) => {
     console.log('>>> req.body', req.body);
-    res.send('create a new user');
+    let {email, myname, city} = req.body;
+    console.log(">>>> email = ", email, 'name = ', myname, 'city = ', city);
+    try{
+        let pool = await sql.connect(sqlConfig);
+        let result = await pool
+        .request()
+        .input('email', sql.NVarChar, email)
+        .input('name', sql.NVarChar, myname)
+        .input('city', sql.NVarChar, city)
+        .query(`INSERT INTO
+                Users(email, name, city)
+                VALUES(@email, @name, @city)`,
+            [email, myname, city],
+        function(err, results){
+            console.log(results);
+        });
+
+        const recordsets = result.recordsets;
+        // Use the recordsets here
+        console.log(recordsets);
+        return res.send(recordsets);
+    }catch(err){
+        console.log(err);
+    }
 }
+
 
 module.exports = {
     getHomepage,
