@@ -2,7 +2,7 @@ const sql = require('mssql');
 const sqlConfig  = require('../config/database');
 
 const getAllUsers = async () =>{
-    let result;
+    let result = null;
     try{
         let pool = await sql.connect(sqlConfig);
         result = await pool
@@ -10,7 +10,6 @@ const getAllUsers = async () =>{
         .query(`SELECT *
                 FROM Users`,
         );
-        // console.log(result);
         // Inform the state
         //res.send('Create User succeed');
     }
@@ -18,7 +17,7 @@ const getAllUsers = async () =>{
         console.log(err);
     }
 
-    return result;
+    return result.recordset;
 }
 
 module.exports = {

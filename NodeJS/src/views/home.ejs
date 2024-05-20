@@ -37,37 +37,30 @@
         <a href="/create">Create Users</a>
     </div>
     <div class="table-container">
-        <%= JSON.stringify(listUsers) %>
         <div class="title">List Users</div> 
         <table>
             <tr>
-              <th>Id</th>
-              <th>Email</th>
-              <th>Name</th>
-              <th>City</th>
-              <th>Action</th>
-            </tr>
-            <tr>
-              <td>Jill</td>
-              <td>Smith</td>
-              <td>50</td>
-              <td>50</td>
-              <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Eve</td>
-              <td>Jackson</td>
-              <td>94</td>
-              <td>94</td>
-            </tr>
-            <tr>
-              <td>Adam</td>
-              <td>Johnson</td>
-              <td>67</td>
-              <td>67</td>
+                <table>
+                    <tr class="title">
+                        <td>Id</td>
+                        <td>Name</td>
+                        <td>Email</td>
+                        <td>City</td>
+                        <td>Actions</td>
+                    </tr>
+                    <% listUsers.forEach(function(user) { %>
+                        <tr>
+                            <td><%= user.id %></td>
+                            <td><%= user.name %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.city %></td>
+                            <td>
+                                <button>Edit</button>
+                                <button>Delete</button>
+                            </td>
+                        </tr>
+                    <% }) %>
+                    </table>
             </tr>
         </table>
     </div>
