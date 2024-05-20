@@ -92,23 +92,25 @@ const postCreateUser = async (req, res) => {
             [email, myname, city],
         function(err, results){
             console.log(results);
+            res.send('Create User succeed');
         });
 
-        const recordsets = result.recordsets;
-        // Use the recordsets here
-        console.log(recordsets);
-        return res.send(recordsets);
+        // Inform the state
+        res.send('Create User succeed');
     }catch(err){
         console.log(err);
     }
 }
 
 
+const getCreatePage = (req, res) =>{
+    res.render('create.ejs');
+}
+
 module.exports = {
     getHomepage,
     getABC,
     getBCD,
-    postCreateUser
-    //getOld,
-    //getNew
+    postCreateUser,
+    getCreatePage
 }
