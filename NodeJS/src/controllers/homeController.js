@@ -94,7 +94,7 @@ const postCreateUser = async (req, res) => {
             console.log(results);
             res.send('Create User succeed');
         });
-
+        console.log(result);
         // Inform the state
         res.send('Create User succeed');
     }catch(err){
