@@ -1,10 +1,12 @@
 const sql = require('mssql');
 const sqlConfig  = require('../config/database');
+const { getAllUsers } = require('../service/CRUDService')
 //const request = new sql.Request()
 
-
 const getHomepage = async (req, res) =>{
-    return res.render('home.ejs')
+    let result  = await getAllUsers();
+    console.log(result);
+    return res.render('home.ejs', {listUsers: result}) // listUser = result
 }
 
 const getABC = (req, res) =>{
@@ -101,7 +103,6 @@ const postCreateUser = async (req, res) => {
         console.log(err);
     }
 }
-
 
 const getCreatePage = (req, res) =>{
     res.render('create.ejs');
