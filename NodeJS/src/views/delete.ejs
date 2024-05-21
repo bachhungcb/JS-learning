@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update A User</title>
+    <link rel="stylesheet" href="/css/homePage.css">
+</head>
+<body>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a href="/create">Create Users</a>
+    </div>
+
+    <div class="form-add-new">
+        <form action="/delete-user" method="POST">
+            <!-- <%=JSON.stringify(user)%> -->
+            <fieldset>
+                <legend>Update a user </legend>
+                    <div class="input-group d-none">
+                        <label>Id: </label>
+                        <input  type="text" 
+                                name="userId"
+                                value="<%= user[0].id%>"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <label>Email: </label>
+                        <input  type="text" 
+                                name="email"
+                                value="<%= user[0].email%>"
+                        />
+                    </div>
+                
+                    <div>
+                        <button>Confirm</button>
+                    </div>
+            </fieldset>
+        </form>
+    </div>
+    
+</body>
+</html>

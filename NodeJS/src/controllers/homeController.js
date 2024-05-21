@@ -1,6 +1,6 @@
 const sql = require('mssql');
 const sqlConfig  = require('../config/database');
-const { getAllUsers, updateUserById, createNewUsers } = require('../service/CRUDService')
+const { getAllUsers, updateUserById, createNewUsers, getUserById } = require('../service/CRUDService')
 //const request = new sql.Request()
 
 const getHomepage = async (req, res) =>{
@@ -80,7 +80,7 @@ const postCreateUser = async (req, res) => {
 
     let {email, myname, city} = req.body;
     await createNewUsers(email, myname, city);
-    res.send('Create User succeed');
+    res.redirect('/');
 }
 
 const getCreatePage = (req, res) =>{
@@ -88,24 +88,7 @@ const getCreatePage = (req, res) =>{
 }
 const getUpdatePage = async (req, res) =>{
     const userId = req.params.id;
-    let result = null;
-    try{
-        let pool = await sql.connect(sqlConfig);
-        result = await pool
-        .request()
-        .input('userId', sql.Int, userId)
-        .query(`SELECT *
-                FROM Users
-                WHERE id = @userId`,
-        );
-        // Inform the state
-        //res.send('Create User succeed');
-    }
-    catch(err){
-        console.log(err);
-    }
-    
-    let user = result && result.recordset.length > 0 ? result.recordsets[0]: {};
+    let user = await getUserById(userId);
     res.render('edit.ejs', {user : user}); //user = user
 }
 
@@ -116,6 +99,16 @@ const postUpdatePage = async (req, res) => {
     res.redirect('/');
 }
 
+const postDeleteUser = async (req,res) =>{
+    const userId = req.params.id;
+    let user = await getUserById(userId);
+    res.render('delete.ejs', {user: user});
+}
+
+const handleDeleteuser = async (req,res) => {
+    res.send('Deleted user');
+}
+
 module.exports = {
     getHomepage,
     getABC,
@@ -123,5 +116,7 @@ module.exports = {
     postCreateUser,
     getCreatePage,
     getUpdatePage,
-    postUpdatePage
+    postUpdatePage,
+    postDeleteUser,
+    handleDeleteuser
 }

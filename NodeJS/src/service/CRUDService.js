@@ -60,8 +60,31 @@ const createNewUsers = async (email, myname, city) =>{
     }
 }
 
+const getUserById = async (userId) => {
+    let result = null;
+    try{
+        let pool = await sql.connect(sqlConfig);
+        result = await pool
+        .request()
+        .input('userId', sql.Int, userId)
+        .query(`SELECT *
+                FROM Users
+                WHERE id = @userId`,
+        );
+        // Inform the state
+        //res.send('Create User succeed');
+    }
+    catch(err){
+        console.log(err);
+    }
+    
+    let user = result && result.recordset.length > 0 ? result.recordsets[0]: {};
+    return user;
+}
+
 module.exports = {
     getAllUsers,
     updateUserById,
-    createNewUsers
+    createNewUsers,
+    getUserById
 }
