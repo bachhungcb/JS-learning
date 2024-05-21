@@ -46,3 +46,6 @@
     cursor: pointer;
     padding: 5px;
   }
+  .d-none{
+    display:none;
+}
