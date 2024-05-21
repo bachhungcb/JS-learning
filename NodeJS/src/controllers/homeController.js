@@ -107,6 +107,8 @@ const getCreatePage = (req, res) =>{
     res.render('create.ejs');
 }
 const getUpdatePage = (req, res) =>{
+    const userId = req.params.id;
+    console.log(userId);
     res.render('edit.ejs');
 }
 

@@ -1,21 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-    
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name = "viewport" content ="width=device-width, initial-scale = 1.0">
-    <title>My Website</title>
-    <link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+.notification {
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    padding: 15px 26px;
+    position: relative;
+    border-radius: 2px;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    text-align: center; /* Add this line */
+}
+
+.notification .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: hsl(0, 0%, 0%);
+    color: white;
+}
+
+.notification .badge:hover {
+    background-color: hsl(0, 0%, 75%);
+}
+
+
+</style>
 </head>
-
 <body>
-    <form class="weatherForm">
-        <input type="text" class="cityInput" placeholder="Enter City">
-        <button type="submit">Get Weather</button>
-    </form>
 
-    <div class="card" style="display:none">
-    </div>
-    <script src="index.js"></script>
+<h1>NOTIFICATION</h1>
+
+<div id="notificationButton" style="display: flex; justify-content: center; align-items: center; height: 5;"> 
+    <br/>
+    <a href="#" class="notification">
+        <span>SOS</span>
+        <span class="badge" id="close">x</span>
+    </a>
+    <br/>
+</div>
+
+<script>
+    // Get the button element
+    const button = document.getElementById('close');
+    const notification = document.getElementById('notificationButton');
+
+    // Add event listener to the button
+    button.addEventListener('click', function() {
+        // Hide the button by modifying its style
+        notification.style.display = 'none';
+    });
+</script>
+
 </body>
 </html>
