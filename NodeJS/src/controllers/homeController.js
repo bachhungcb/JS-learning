@@ -1,6 +1,6 @@
 const sql = require('mssql');
 const sqlConfig  = require('../config/database');
-const { getAllUsers, updateUserById, createNewUsers, getUserById } = require('../service/CRUDService')
+const { getAllUsers, updateUserById, createNewUsers, getUserById, deleteUsersById } = require('../service/CRUDService')
 //const request = new sql.Request()
 
 const getHomepage = async (req, res) =>{
@@ -106,7 +106,9 @@ const postDeleteUser = async (req,res) =>{
 }
 
 const handleDeleteuser = async (req,res) => {
-    res.send('Deleted user');
+    const userId = req.body.userId;
+    await deleteUsersById(userId);
+    res.redirect('/');
 }
 
 module.exports = {

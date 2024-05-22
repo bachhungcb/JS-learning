@@ -82,9 +82,28 @@ const getUserById = async (userId) => {
     return user;
 }
 
+const deleteUsersById = async (userId) =>{
+    let result = null;
+    try{
+        let pool = await sql.connect(sqlConfig);
+        result = await pool
+        .request()
+        .input('userId', sql.Int, userId)
+        .query(`DELETE FROM Users
+                WHERE id = @userId`,
+        );
+        // Inform the state
+        //res.send('Create User succeed');
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
 module.exports = {
     getAllUsers,
     updateUserById,
     createNewUsers,
-    getUserById
+    getUserById,
+    deleteUsersById
 }
