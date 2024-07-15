@@ -22,12 +22,15 @@
 
 .notification .badge {
     position: absolute;
-    top: -10px;
-    right: -10px;
-    padding: 5px 10px;
+    top: 5px;
+    right: 5px;
+    padding: 5px 8px;
     border-radius: 50%;
     background-color: hsl(0, 0%, 0%);
     color: white;
+    cursor: pointer;
+    align-items: center;
+    text-align: center;
 }
 
 .notification .badge:hover {
@@ -45,10 +48,9 @@
 
 <div id="notificationButton" style="display: flex; justify-content: center; align-items: center; height: 10;"> 
     <br/>
-    <a href="#" class="notification">
+    <div href="#" class="notification">
         <span class="inline_text">Có cảnh báo SOS, vui lòng kiểm tra</span>
-        <span class="badge" id="close">x</span>
-    </a>
+    </div>
     <br/>
 </div>
 
