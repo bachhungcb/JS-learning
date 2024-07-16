@@ -22,13 +22,11 @@ app.get("/api/notes", async (req,res)=>{
 })
 
 app.post("/api/notes", async (req,res)=>{
-    const { Title, Content } = req.body[0];
-    
-    if (!Title || !Content) {
-        return res.status(400).json({ error: "title and content fields required" });
-    }
-
     try{
+        const { Title, Content } = req.body;
+        if (!Title || !Content) {
+            return res.status(400).json({ error: "title and content fields required" });
+        }
         const note = await sql.connect(config);
         await note.request()
             .input('title', sql.NVarChar, Title)
@@ -36,8 +34,9 @@ app.post("/api/notes", async (req,res)=>{
             .query('insert into notes (title, content) values (@title, @content)');
             res.status(200).json({message: "Note added successfully"});
     }catch(err){
-        console.log(err)
-    };
+        console.log(err);
+    }
+    
 })
 
 app.put("/api/notes/:id", async (req,res)=>{

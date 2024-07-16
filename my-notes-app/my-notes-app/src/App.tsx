@@ -1,59 +1,71 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 interface Note {
   id: number;
-  title: string;
-  content: string;
+  Title: string;  // phai match voi DB
+  Content: string;// phai match voi DB
 }
 
 
 const App = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [Title, setTitle] = useState("");
+  const [Content, setContent] = useState("");
 
-  const [notes, setNotes] = useState<Note[]>([
-    {
-      id: 1,
-      title: "Note 1",
-      content: "hahahah",
-    },
-    {
-      id: 2,
-      title: "Note 2",
-      content: "Content 2",
-    },
-    {
-      id: 3,
-      title: "Note 3",
-      content: "Content 3",
-    },
-    {
-      id: 4,
-      title: "Note 4",
-      content: "Content 4",
-    },
-  ]);
+  const [notes, setNotes] = useState<Note[]>([]);
 
-  const handleAddNote = (event: React.FormEvent) => {
-    event.preventDefault();
-    setNotes([newNote, ...notes]);
-    setTitle("");
-    setContent("");
+  useEffect(() => {
+
+    const fetchNotes = async() =>{
+      try{
+        const response = await fetch("http://localhost:5000/api/notes"); //lay data tu BE
+        const notes: Note[] = await response.json();
+        setNotes(notes);
+      }catch(err){
+        console.log(err);
+      }
+    }
+
+    fetchNotes();
+  },[]); //Lastly, add an empty dependency array 
+         //to ensure that this code only runs once when 
+         //the component is first mounted:
+  
+
+
+  const handleAddNote = async (event: React.FormEvent) => {
+
+    try{
+      event.preventDefault();
+      const response = await fetch(
+        "http://localhost:5000/api/notes",
+        {
+          method:"POST",
+          headers:{
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            Title,
+            Content,
+          }),
+        }
+      );
+      
+      const newNote = await response.json();
+      setNotes([...notes, newNote]);
+      setTitle("");
+      setContent("");
+    }catch(err){
+      console.log(err);
+    }
   }
-
-  const newNote: Note = {
-    id: notes.length +1,
-    title: title, 
-    content: content,
-  };
 
   const  [selectedNote, setSelectedNote] = useState<Note | null >(null);
   const handleNoteClick = (note: Note) =>{
     setSelectedNote(note);
-    setTitle(note.title);
-    setContent(note.content);
+    setTitle(note.Title);
+    setContent(note.Content);
   }
 
   const handleUpdateNote = (event: React.FormEvent) =>{
@@ -65,8 +77,8 @@ const App = () => {
 
     const updateNote: Note = {
       id: selectedNote.id,
-      title: title,
-      content: content,
+      Title: Title,
+      Content: Content,
     };
 
     const updatedNotesList = notes.map((note) => (note.id === selectedNote.id ? updateNote: note))
@@ -91,19 +103,20 @@ const App = () => {
     setNotes(updatedNotes);
   }
 
+  
   return (
     <div className="app-container">
       <form onSubmit={(event) => 
                       {selectedNote? handleUpdateNote(event) : handleAddNote(event)}}
             className="note-form">
         <input
-            value={title}
+            value={Title}
             onChange={(event) => setTitle(event.target.value)}        
             placeholder="Title" 
             required>
         </input>
         <textarea
-          value={content}
+          value={Content}
           onChange={(event) => setContent(event.target.value)}
           placeholder="Content" 
           rows={10} required>
@@ -124,8 +137,8 @@ const App = () => {
             <div className="notes-header">
               <button onClick={(event)=>deleteNote(event, note.id)}>x</button>
             </div>
-            <h2>{note.title}</h2>
-            <p>{note.content}</p>
+            <h2>{note.Title}</h2>
+            <p>{note.Content}</p>
           </div>
         ))}
       </div>
