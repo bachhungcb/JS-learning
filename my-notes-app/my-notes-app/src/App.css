@@ -67,12 +67,15 @@ body{
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-auto-rows: minmax(250px, auto);
   gap: 20px;
+  border: 5px solid #ffffff;
+  border-radius: 5px;
+
 }
 
 .notes-item{
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
+  border: 5px solid #ff0000;
   padding: 10px;
   border-radius: 5px;
   background-color: #f9f9f9;

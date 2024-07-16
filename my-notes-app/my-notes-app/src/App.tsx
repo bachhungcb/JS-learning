@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 
 interface Note {
-  id: number;
+  Id: number;
   Title: string;  // phai match voi DB
   Content: string;// phai match voi DB
 }
@@ -63,6 +63,7 @@ const App = () => {
 
   const  [selectedNote, setSelectedNote] = useState<Note | null >(null);
   const handleNoteClick = (note: Note) =>{
+    console.log(note.Id);
     setSelectedNote(note);
     setTitle(note.Title);
     setContent(note.Content);
@@ -76,12 +77,12 @@ const App = () => {
     }
 
     const updateNote: Note = {
-      id: selectedNote.id,
+      Id: selectedNote.Id,
       Title: Title,
       Content: Content,
     };
 
-    const updatedNotesList = notes.map((note) => (note.id === selectedNote.id ? updateNote: note))
+    const updatedNotesList = notes.map((note) => (note.Id === selectedNote.Id ? updateNote: note))
 
     setNotes(updatedNotesList);
     setTitle("");
@@ -95,13 +96,30 @@ const App = () => {
     setSelectedNote(null);
   }
 
-  const deleteNote = (event: React.MouseEvent, noteId: number)=>{
+  const deleteNote = async (
+    event: React.MouseEvent,
+    noteId: number
+  ) => {
     event.stopPropagation();
 
-    const updatedNotes = notes.filter((note) => note.id !== noteId);
+    try {
+      await fetch(
+        `http://localhost:5000/api/notes/${noteId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      console.log(noteId);
+      const updatedNotes = notes.filter(
+        (note) => note.Id !== noteId
+      );
 
-    setNotes(updatedNotes);
-  }
+      setNotes(updatedNotes);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
 
   
   return (
@@ -133,9 +151,9 @@ const App = () => {
       </form>
       <div className="notes-grid">
         {notes.map((note) => (
-          <div key={note.id} className="note-item" onClick={() => handleNoteClick(note)}>
+          <div key={note.Id} className="note-item" onClick={() => handleNoteClick(note)}>
             <div className="notes-header">
-              <button onClick={(event)=>deleteNote(event, note.id)}>x</button>
+              <button onClick={(event)=>deleteNote(event, note.Id)}>x</button>
             </div>
             <h2>{note.Title}</h2>
             <p>{note.Content}</p>
