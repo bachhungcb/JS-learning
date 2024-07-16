@@ -83,6 +83,13 @@ const App = () => {
     setSelectedNote(null);
   }
 
+  const deleteNote = (event: React.MouseEvent, noteId: number)=>{
+    event.stopPropagation();
+
+    const updatedNotes = notes.filter((note) => note.id !== noteId);
+    
+    setNotes(updatedNotes);
+  }
   return (
     <div className="app-container">
       <form onSubmit={(event) => 
