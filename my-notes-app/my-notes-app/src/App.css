@@ -72,10 +72,10 @@ body{
 
 }
 
-.notes-item{
+.note-item{
   display: flex;
   flex-direction: column;
-  border: 5px solid #ff0000;
+  border: 5px solid #000000;
   padding: 10px;
   border-radius: 5px;
   background-color: #f9f9f9;
