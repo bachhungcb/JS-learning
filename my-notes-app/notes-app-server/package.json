@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "@prisma/client": "^5.16.2",
+    "@sequelize/core": "^7.0.0-alpha.41",
+    "@sequelize/mssql": "^7.0.0-alpha.41",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
